@@ -1,0 +1,243 @@
+// Renda+ — modelo de dados
+// Banco: PostgreSQL (dev local, Docker ou gerenciado: Neon, Supabase, RDS…)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Plan {
+  FREE
+  PREMIUM
+}
+
+enum WorkMode {
+  ONLINE
+  PRESENCIAL
+  HIBRIDO
+}
+
+enum Region {
+  BR
+  GLOBAL
+}
+
+enum Currency {
+  BRL
+  USD
+}
+
+enum Category {
+  FREELANCE
+  ENSINO
+  CONTEUDO
+  AFILIADOS
+  ECOMMERCE
+  MICROTAREFAS
+  ENTREGAS_MOBILIDADE
+  SERVICOS_LOCAIS
+  ALUGUEL_ATIVOS
+  ALIMENTACAO
+}
+
+enum TrackStatus {
+  SAVED
+  IN_PROGRESS
+  EARNING
+  PAUSED
+}
+
+model User {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  name             String
+  passwordHash     String
+  role             Role      @default(USER)
+  plan             Plan      @default(FREE)
+  premiumUntil     DateTime?
+  billingCustomer  String?   @unique // app_user_id no RevenueCat
+  monthlyGoalCents Int       @default(100000) // meta mensal em centavos de BRL
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  profile       Profile?
+  refreshTokens RefreshToken[]
+  tracks        UserTrack[]
+  stepProgress  StepProgress[]
+  earnings      Earning[]
+  clicks        AffiliateClick[]
+  billingEvents BillingEvent[]
+}
+
+model RefreshToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+/// Respostas do quiz de perfil
+model Profile {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  hoursPerWeek  Int
+  modePref      WorkMode // ONLINE, PRESENCIAL ou HIBRIDO (= tanto faz)
+  capitalBRL    Int // quanto pode investir para começar
+  skills        String[]
+  assets        String[]
+  englishLevel  Int // 0 nenhum, 1 básico, 2 intermediário, 3 avançado
+  needsFastCash Boolean
+  wantsDollar   Boolean
+  experience    Int // 0 iniciante, 1 alguma, 2 experiente
+  city          String?
+  updatedAt     DateTime @updatedAt
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Opportunity {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  tagline          String
+  description      String
+  category         Category
+  mode             WorkMode
+  region           Region
+  currency         Currency
+  icon             String // nome do ícone (Ionicons)
+  color            String // cor de destaque (hex)
+  hourlyMin        Float // ganho estimado por hora trabalhada, na moeda da oportunidade
+  hourlyMax        Float
+  earningsNote     String
+  startupCostBRL   Int
+  difficulty       Int // 1..5
+  daysToFirstPay   Int
+  minHoursWeek     Int
+  flexibility      Int // 1..5
+  minEnglish       Int      @default(0)
+  requiredAssets   String[]
+  skills           String[]
+  pros             String[]
+  cons             String[]
+  warnings         String[]
+  taxNote          String
+  sources          String[]
+  popularity       Int      @default(0)
+  published        Boolean  @default(true)
+  reviewedAt       DateTime @default(now())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  platforms  Platform[]
+  steps      TrackStep[]
+  userTracks UserTrack[]
+  earnings   Earning[]
+
+  @@index([category])
+  @@index([mode])
+}
+
+model Platform {
+  id            String           @id @default(cuid())
+  opportunityId String
+  name          String
+  url           String
+  affiliateUrl  String? // se preenchido, o clique usa este link (comissão de indicação)
+  description   String?
+  /// Alerta exibido ao usuário quando a plataforma passou na auditoria com ressalvas
+  caution       String?
+  order         Int              @default(0)
+  opportunity   Opportunity      @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  clicks        AffiliateClick[]
+
+  @@index([opportunityId])
+}
+
+model TrackStep {
+  id            String         @id @default(cuid())
+  opportunityId String
+  order         Int
+  title         String
+  content       String
+  premium       Boolean        @default(false)
+  opportunity   Opportunity    @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  progress      StepProgress[]
+
+  @@unique([opportunityId, order])
+}
+
+model UserTrack {
+  id            String      @id @default(cuid())
+  userId        String
+  opportunityId String
+  status        TrackStatus @default(SAVED)
+  startedAt     DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  opportunity   Opportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, opportunityId])
+}
+
+model StepProgress {
+  userId String
+  stepId String
+  doneAt DateTime  @default(now())
+  user   User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  step   TrackStep @relation(fields: [stepId], references: [id], onDelete: Cascade)
+
+  @@id([userId, stepId])
+}
+
+model Earning {
+  id            String       @id @default(cuid())
+  userId        String
+  opportunityId String?
+  source        String // rótulo livre (ex.: "iFood", "Cliente João")
+  amountCents   Int
+  currency      Currency     @default(BRL)
+  amountBRLCents Int // convertido na data do lançamento
+  date          DateTime
+  note          String?
+  createdAt     DateTime     @default(now())
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  opportunity   Opportunity? @relation(fields: [opportunityId], references: [id], onDelete: SetNull)
+
+  @@index([userId, date])
+}
+
+model AffiliateClick {
+  id         String   @id @default(cuid())
+  platformId String
+  userId     String?
+  usedAffiliate Boolean
+  createdAt  DateTime @default(now())
+  platform   Platform @relation(fields: [platformId], references: [id], onDelete: Cascade)
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([platformId, createdAt])
+}
+
+model BillingEvent {
+  id        String   @id // id do evento no provedor (idempotência)
+  userId    String?
+  type      String
+  payload   Json
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+}

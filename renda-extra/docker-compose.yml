@@ -1,0 +1,30 @@
+# Sobe banco + API localmente: docker compose up --build
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: renda
+      POSTGRES_PASSWORD: renda
+      POSTGRES_DB: rendamais
+    ports: ['5432:5432']
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U renda']
+      interval: 5s
+      retries: 10
+
+  api:
+    build: ./api
+    depends_on:
+      db: { condition: service_healthy }
+    ports: ['3333:3333']
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://renda:renda@db:5432/rendamais?schema=public
+      JWT_SECRET: ${JWT_SECRET:-troque-este-segredo-em-producao-com-48-bytes-aleatorios}
+      CORS_ORIGINS: '*'
+      ADMIN_EMAILS: ${ADMIN_EMAILS:-}
+      REVENUECAT_WEBHOOK_AUTH: ${REVENUECAT_WEBHOOK_AUTH:-}
+
+volumes:
+  pgdata:
