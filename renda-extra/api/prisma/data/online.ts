@@ -1,13 +1,18 @@
 import { ANTI_SCAM, TAX, type SeedOpportunity } from './types.js';
 
-const WORKANA = { name: 'Workana', url: 'https://www.workana.com/pt', description: 'Maior marketplace de freelas da América Latina' };
+const WORKANA = { name: 'Workana', url: 'https://www.workana.com/pt', description: 'Maior marketplace de freelas da América Latina; o pagamento fica retido até o cliente aprovar a entrega' };
 const FREELAS99 = { name: '99Freelas', url: 'https://www.99freelas.com.br', description: 'Plataforma brasileira com alto volume de projetos', caution: 'Reputação no Reclame Aqui varia entre 6,9 e 7,6 conforme o período (out/2026). Use o pagamento protegido da plataforma.' };
 const FIVERR = { name: 'Fiverr', url: 'https://www.fiverr.com', description: 'Venda pacotes de serviço para o mundo todo (USD) — saque via Payoneer ou PayPal' };
 const UPWORK = { name: 'Upwork', url: 'https://www.upwork.com', description: 'Maior plataforma global de freelas (USD) — saque via Payoneer' };
 const LINKEDIN = { name: 'LinkedIn', url: 'https://www.linkedin.com', description: 'Prospecção direta, sem taxa de plataforma' };
 const INSTAGRAM = { name: 'Instagram', url: 'https://www.instagram.com', description: 'Portfólio e prospecção de clientes locais' };
-const HOTMART = { name: 'Hotmart', url: 'https://hotmart.com/pt-br', description: 'Maior plataforma de produtos digitais do Brasil' };
-const KIWIFY = { name: 'Kiwify', url: 'https://kiwify.com.br', description: 'Plataforma de produtos digitais com taxas competitivas' };
+const HOTMART = {
+  name: 'Hotmart',
+  url: 'https://hotmart.com/pt-br',
+  description: 'Maior plataforma de produtos digitais do Brasil (Reclame Aqui: 8,5/10)',
+  caution: 'Há relatos isolados de saldo retido em “análise de risco”. Guarde comprovantes das vendas e acione o suporte se o prazo de liberação vencer.',
+};
+const KIWIFY = { name: 'Kiwify', url: 'https://kiwify.com.br', description: 'Produtos digitais com taxas competitivas; o valor das vendas fica reservado por até 30 dias para cobrir reembolsos' };
 
 const freelanceSteps = (craft: string, portfolioTip: string, priceTip: string) => [
   {
@@ -263,7 +268,12 @@ export const ONLINE: SeedOpportunity[] = [
     warnings: [ANTI_SCAM],
     taxNote: TAX.foreign,
     popularity: 52,
-    platforms: [UPWORK, { name: 'ProZ', url: 'https://www.proz.com', description: 'Comunidade e vagas para tradutores' }, FIVERR],
+    platforms: [UPWORK, {
+        name: 'ProZ',
+        url: 'https://www.proz.com',
+        description: 'Maior comunidade e mural de vagas para tradutores',
+        caution: 'A ProZ só conecta você a clientes e não garante o pagamento. Consulte o histórico do cliente no Blue Board e peça adiantamento a clientes novos.',
+      }, FIVERR],
     steps: freelanceSteps('traduções', 'Traduza 3 textos curtos de áreas diferentes e publique lado a lado (original × tradução).', 'Cobre por palavra (US$ 0,04–0,10) em tradução e por minuto de vídeo em legendagem.'),
   },
   {
@@ -304,20 +314,14 @@ export const ONLINE: SeedOpportunity[] = [
       {
         name: 'Outlier',
         url: 'https://outlier.ai',
-        description: 'Projetos de treinamento de IA, inclusive em português (Scale AI) — paga via PayPal/Airtm',
+        description: 'Projetos de treinamento de IA, inclusive em português (Scale AI). O Brasil está na lista oficial de países; paga via PayPal/Airtm',
         caution: 'Volume de tarefas oscila e há relatos de testes de qualificação não remunerados.',
-      },
-      {
-        name: 'Handshake AI',
-        url: 'https://joinhandshake.com/ai/',
-        description: 'Projetos para especialistas; recruta falantes de português no Brasil (até US$ 25/h divulgados)',
-        caution: 'Trabalho por projeto, sem renda garantida. Exige graduação e, em geral, inglês intermediário.',
       },
       {
         name: 'Alignerr',
         url: 'https://www.alignerr.com',
-        description: 'Foco em especialistas por área (Labelbox); vagas abertas no Brasil',
-        caution: 'Pagamento condicionado à aprovação das tarefas e relatos de avaliações não pagas.',
+        description: 'Foco em especialistas por área (Labelbox); há vagas abertas para o Brasil',
+        caution: 'A elegibilidade é definida vaga a vaga. Pagamento condicionado à aprovação das tarefas; há relatos de avaliações não pagas.',
       },
     ],
     steps: [
@@ -368,7 +372,7 @@ export const ONLINE: SeedOpportunity[] = [
         name: 'Userlytics',
         url: 'https://www.userlytics.com',
         description: 'Testes de 20–40 min, pagamento via PayPal',
-        caution: 'Sem presença oficial no Brasil: o volume de testes para brasileiros tende a ser baixo.',
+        caution: 'PayPal é o único meio de pagamento. Sem presença oficial no Brasil: o volume de testes para brasileiros tende a ser baixo.',
       },
     ],
     steps: [
@@ -411,14 +415,14 @@ export const ONLINE: SeedOpportunity[] = [
       {
         name: 'Preply',
         url: 'https://preply.com',
-        description: 'Você define o preço da aula; comissão de 33% caindo até 18%',
-        caution: 'Para ensinar inglês, os requisitos variam por candidatura. Para ensinar português, você é falante nativo.',
+        description: 'Você define o preço; aceita professores não nativos; saque via Payoneer, PayPal ou Skrill',
+        caution: 'Comissão alta no início (33%, caindo até 18%): as primeiras aulas rendem menos.',
       },
       {
         name: 'italki',
         url: 'https://www.italki.com',
-        description: 'Professores e tutores comunitários; comissão de 15–21%; saque via Payoneer ou PayPal',
-        caution: 'Tutores comunitários normalmente ensinam a língua nativa: o caminho mais fácil para brasileiros é o português.',
+        description: 'Tutores comunitários e professores; comissão de 15–21%; saque via PayPal, Payoneer ou transferência',
+        caution: 'Exige documento oficial no cadastro. Tutores comunitários ensinam a língua nativa: para brasileiros, o caminho é o português.',
       },
     ],
     steps: [
@@ -455,7 +459,7 @@ export const ONLINE: SeedOpportunity[] = [
     taxNote: TAX.mei,
     popularity: 68,
     platforms: [
-      { name: 'GetNinjas', url: 'https://www.getninjas.com.br', description: 'Pedidos de alunos da sua região (Reclame Aqui: 8,4/10)' },
+      { name: 'GetNinjas', url: 'https://www.getninjas.com.br', description: 'Pedidos de alunos da sua região (Reclame Aqui: 8,4/10)', caution: 'Você paga para ver cada contato. Há reclamações de pedidos sem resposta e reembolso difícil: comece com o menor pacote.' },
       { name: 'WhatsApp Business', url: 'https://business.whatsapp.com', description: 'Divulgue em grupos de pais e da escola, com catálogo de aulas' },
       { name: 'Perfil da Empresa no Google', url: 'https://www.google.com/intl/pt-BR/business/', description: 'Apareça para quem busca “aulas de matemática perto de mim”' },
     ],
@@ -499,9 +503,9 @@ export const ONLINE: SeedOpportunity[] = [
     ],
     popularity: 90,
     platforms: [
-      { name: 'Shopee Afiliados', url: 'https://affiliate.shopee.com.br', description: 'Comissão por categoria e campanhas', caution: 'Reputação “Regular” no Reclame Aqui (6,7/10, mai–out/2026), por reclamações de compradores.' },
+      { name: 'Shopee Afiliados', url: 'https://affiliate.shopee.com.br', description: 'Comissão por categoria e campanhas', caution: 'Reputação “Regular” no Reclame Aqui (6,7/10, mai–out/2026). Comissões são validadas em 30–60 dias e pagas uma vez por mês; compras pelo seu próprio link não geram comissão.' },
       { name: 'Mercado Livre Afiliados', url: 'https://www.mercadolivre.com.br/l/afiliados-home', description: 'Programa de afiliados e creators — comissão de até 16%' },
-      { name: 'Amazon Associados', url: 'https://associados.amazon.com.br', description: 'Programa de afiliados da Amazon Brasil' },
+      { name: 'Amazon Associados', url: 'https://associados.amazon.com.br', description: 'Afiliados da Amazon Brasil; pagamento por transferência ~60 dias após o mês da venda' },
     ],
     steps: [
       { title: 'Cadastre-se nos programas', content: 'Shopee, Mercado Livre e Amazon têm cadastro gratuito. Use CPF e dados bancários corretos para receber.' },
@@ -576,7 +580,7 @@ export const ONLINE: SeedOpportunity[] = [
     popularity: 76,
     platforms: [
       { name: 'TikTok Studio', url: 'https://www.tiktok.com/tiktokstudio', description: 'Onde o criador pede acesso ao programa de afiliados' },
-      { name: 'TikTok Shop Brasil', url: 'https://seller-br.tiktok.com', description: 'Central oficial do TikTok Shop no Brasil' },
+      { name: 'TikTok Shop Brasil', url: 'https://seller-br.tiktok.com', description: 'Central oficial do TikTok Shop no Brasil; comissões sacadas via Pix ou conta bancária com CPF' },
     ],
     steps: [
       { title: 'Chegue aos primeiros 1.000 seguidores', content: 'Escolha um nicho (beleza, casa, gadgets, pet) e poste 1–2 vídeos por dia. Ganchos fortes nos 2 primeiros segundos.' },
@@ -796,8 +800,8 @@ export const ONLINE: SeedOpportunity[] = [
     taxNote: TAX.platformPF,
     popularity: 45,
     platforms: [
-      { name: 'Toluna', url: 'https://br.toluna.com', description: 'Painel de pesquisas; resgate em vale-presente ou PayPal' },
-      { name: 'Ipsos iSay', url: 'https://www.ipsosisay.com/pt-br', description: 'Instituto Ipsos; prêmios em vale-presente ou PayPal' },
+      { name: 'Toluna', url: 'https://br.toluna.com', description: 'Painel de pesquisas; resgate em vale-presente ou PayPal', caution: 'Há relatos de resgates que demoram semanas para ser processados.' },
+      { name: 'Ipsos iSay', url: 'https://www.ipsosisay.com/pt-br', description: 'Instituto Ipsos; prêmios em vale-presente ou PayPal', caution: 'Há relatos de contas bloqueadas com perda de pontos: resgate assim que atingir o mínimo.' },
       { name: 'PiniOn', url: 'https://pinion.app', description: 'App brasileiro de pesquisas e missões (Reclame Aqui: Boa)' },
     ],
     steps: [

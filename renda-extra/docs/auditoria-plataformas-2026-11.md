@@ -1,6 +1,6 @@
 # Auditoria das plataformas — novembro/2026
 
-**Escopo:** as 53 plataformas do catálogo original do Renda+.
+**Escopo:** as 53 plataformas do catálogo original do Renda+ (1ª rodada) e revisão de elegibilidade e pagamentos (2ª rodada, ao final).
 **Critério (definido pelo responsável do produto): rigoroso.**
 
 - **Removida:** reputação "Ruim" ou "Não recomendada" no Reclame Aqui, indício de calote, plataforma encerrada ou que não aceita brasileiros. Toda plataforma removida é substituída por uma alternativa verificada, quando existe uma que passe nos mesmos critérios.
@@ -88,3 +88,55 @@ O catálogo passou de 53 para **48 plataformas**. Nenhuma das 33 oportunidades f
 - O teste `api/test/catalog.test.ts` impede que plataformas reprovadas voltem ao catálogo por engano.
 - Recomenda-se **repetir esta auditoria a cada trimestre**: reputações mudam (o iFood, por exemplo, caiu de "Boa" para "Regular" em julho/2026).
 - Alertas podem ser ajustados em `api/prisma/data/*.ts` (campo `caution`) e aplicados com `npm run db:seed`.
+
+---
+
+## Segunda rodada (12/11/2026): elegibilidade oficial e pagamentos
+
+**Objetivo:** confirmar se as plataformas estrangeiras **aceitam brasileiros** (por páginas oficiais, quando disponíveis) e se as plataformas **pagam de verdade** a quem trabalha ou vende. Para isso, foram buscadas reclamações de saque, repasse e comissão.
+
+**Resultado:** o catálogo passou de 48 para **47 plataformas**; **23** delas têm alerta visível no app.
+
+### Elegibilidade de brasileiros
+
+| Plataforma | Resultado | Evidência |
+| --- | --- | --- |
+| Outlier | ✅ Confirmado: o Brasil está na lista oficial de países (ressalva: alguns projetos restringem país) | [Flexible Working Guidelines](https://outlier.ai/legal/flexible-working-guidelines) |
+| Alignerr | ⚠️ Elegibilidade vaga a vaga; há vagas abertas para o Brasil | [labelingjobs.net](https://labelingjobs.net/guides/mercor-micro1-outlier-alignerr-and-handshake-ai-compared-which-to-apply-to-first) |
+| **Handshake AI** | ❌ **Removida:** a regra oficial é só para residentes nos EUA; para o Brasil havia uma única vaga pontual | [aitrainingpay.com](https://www.aitrainingpay.com/guides/handshake-ai-fellowship) |
+| Preply | ✅ Aceita não nativos; saque via Payoneer, PayPal ou Skrill | [Preply blog](https://preply.com/en/blog/tut-res-how-to-become-an-online-tutor-without-a-degree/) |
+| italki | ✅ Política oficial de professores: cadastro com documento, saque via PayPal, Payoneer ou transferência; brasileiros ensinam português | [italki Teacher Policy](https://www.italki.com/en/instructorterms) |
+| Userlytics | ⚠️ Oficial: participa quem tem PayPal (o Brasil tem); sem presença no país, então pouco volume | [Userlytics — países](https://www.userlytics.com/helpcenter/testers/what-countries-are-supported-for-testers/) |
+| UserTesting | ⚠️ O Brasil aparece como mercado na central de ajuda; a lista de participantes não é publicada e a elegibilidade aparece só no cadastro | [UserTesting — países](https://help.usertesting.com/hc/en-us/articles/11880337236253-Additional-country-filters) |
+| TikTok Shop | ✅ Programa brasileiro; comissão sacada via Pix ou conta com CPF | [Canaltech](https://canaltech.com.br/apps/como-sacar-dinheiro-saldo-tiktok/) |
+| Upwork / Fiverr | ✅ Saque via Payoneer ou conta bancária brasileira (fontes secundárias) | [ARQ](https://arqfinance.com/articles/?p=443), [Grey](https://grey.co/blog/how-fiverr-freelancers-in-brazil-can-receive-payments-easily-in-2025) |
+| Adobe Stock / Shutterstock | ✅ PayPal disponível globalmente e Payoneer fora dos EUA (mín. US$ 25) | [Adobe](https://helpx.adobe.com/stock/contributor/help/getting-paid.html), [Shutterstock](https://submit.shutterstock.com/help/pt-BR/articles/10617435-como-sou-pago-pelo-meu-trabalho) |
+| Redbubble | ⚠️ Paga via PayPal a partir de US$ 20; sem relato confirmado de brasileiro recebendo | [Redbubble](https://help.redbubble.com/hc/articles/360027407652) |
+| ProZ | ⚠️ Diretório: não intermedia nem garante pagamento | [ProZ — Blue Board](https://www.proz.com/translation-articles/articles/3491/1/Using-the-ProZ.com-Blue-Board) |
+| Colab55 | ✅ Empresa brasileira; não encontramos reclamações de artistas sem pagamento | [siteconfiavel](https://www.siteconfiavel.com.br/site/colab55-com) |
+
+**Mercor** foi avaliada como substituta da Handshake AI e **recusada**. Ela paga brasileiros, mas sofreu em 2026 um vazamento de dados de mais de 40 mil prestadores, alvo de ação coletiva ([annotation.academy](https://annotation.academy/blog/is-mercor-legit)).
+
+### "Paga de verdade?": reclamações de quem trabalha ou vende
+
+Nenhuma plataforma do catálogo apresentou **padrão** de calote. Os riscos encontrados viraram alertas:
+
+| Plataforma | Achado | Alerta no app |
+| --- | --- | --- |
+| iFood | Decisões judiciais de 2026 sobre bloqueio de conta com saldo retido | Guardar prints e extratos |
+| 99Food | Entregadores relatam descontos de R$ 100–200 nos repasses quando trabalham via operadoras logísticas | Preferir cadastro direto |
+| Uber | Saldo descontado na Uber Conta (Digio) de quem tem empréstimo | Aviso adicionado |
+| GetNinjas | Profissional paga por contato; queixas de pedidos sem resposta e reembolso difícil | Começar com o menor pacote |
+| Hotmart | Relatos isolados de saldo retido em "análise de risco" (reputação segue "Ótima") | Guardar comprovantes |
+| Kiwify | Vendas ficam reservadas por até 30 dias para cobrir reembolsos | Informado na descrição |
+| Shopee Afiliados | Comissão validada em 30–60 dias e paga mensalmente; compra pelo próprio link não gera comissão | Regras no alerta |
+| Enjoei | Relatos de saque demorado e venda travada por extravio | Alerta ampliado |
+| OLX | Golpe do comprovante falso contra vendedores | Só entregar após ver o dinheiro na conta |
+| Toluna / Ipsos iSay | Resgates demorados; contas bloqueadas com perda de pontos | Resgatar assim que atingir o mínimo |
+| Airbnb | Primeiro repasse de anfitrião novo pode ficar retido por até 30 dias | Informado |
+| Workana / 99Freelas | Pagamento fica retido até o cliente aprovar a entrega, o que reduz o risco de calote | Informado na descrição |
+| Amazon Associados / Mercado Livre Afiliados | Nenhuma reclamação relevante encontrada; a Amazon paga ~60 dias após o mês da venda | — |
+
+### O que continua dependendo de teste real
+
+Para **UserTesting, Userlytics, Alignerr e Redbubble**, a confirmação definitiva só vem fazendo o cadastro com dados brasileiros. Sugestão: um testador de confiança se cadastra e registra o resultado. Se a plataforma recusar o Brasil, ela deve ser removida.

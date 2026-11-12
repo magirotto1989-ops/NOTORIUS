@@ -1,6 +1,11 @@
 import { ANTI_SCAM, TAX, type SeedOpportunity } from './types.js';
 
-const GETNINJAS = { name: 'GetNinjas', url: 'https://www.getninjas.com.br', description: 'Pedidos de clientes da sua região (pague por contato)' };
+const GETNINJAS = {
+  name: 'GetNinjas',
+  url: 'https://www.getninjas.com.br',
+  description: 'Pedidos de clientes da sua região (pague por contato)',
+  caution: 'Você paga para ver cada contato. Há reclamações de pedidos sem resposta e reembolso difícil: comece com o menor pacote.',
+};
 const GOOGLE_PERFIL = { name: 'Perfil da Empresa no Google', url: 'https://www.google.com/intl/pt-BR/business/', description: 'Apareça no Google Maps de graça' };
 const WHATSAPP_BUSINESS = { name: 'WhatsApp Business', url: 'https://business.whatsapp.com', description: 'Catálogo, respostas rápidas e etiquetas' };
 const INSTAGRAM = { name: 'Instagram', url: 'https://www.instagram.com', description: 'Vitrine e prova social' };
@@ -65,8 +70,8 @@ export const LOCAL: SeedOpportunity[] = [
     sources: ['https://static.poder360.com.br/uploads/2026/08/Resposta-iFood-Guilherme-Boulos.pdf', 'https://canaltech.com.br/mercado/quanto-ganha-um-entregador-do-ifood-em-2025/'],
     popularity: 92,
     platforms: [
-      { name: 'iFood Entregadores', url: 'https://entregador.ifood.com.br', description: 'Maior app de delivery do Brasil', caution: 'Reputação “Regular” no Reclame Aqui (6,9/10, mai–out/2026); há relatos de bloqueios de conta de entregadores.' },
-      { name: '99Food', url: 'https://99app.com/food/', description: 'Delivery da 99, em expansão em 2026 (Reclame Aqui: 7,9/10, Boa)' },
+      { name: 'iFood Entregadores', url: 'https://entregador.ifood.com.br', description: 'Maior app de delivery do Brasil', caution: 'Reputação “Regular” no Reclame Aqui (6,9/10, mai–out/2026). Há relatos e decisões judiciais de 2026 sobre bloqueio de conta com saldo retido: guarde prints e extratos.' },
+      { name: '99Food', url: 'https://99app.com/food/', description: 'Delivery da 99, em expansão em 2026 (Reclame Aqui: 7,9/10, Boa)', caution: 'Entregadores relatam descontos nos repasses quando trabalham por operadoras logísticas (OLs): prefira o cadastro direto.' },
     ],
     steps: [
       { title: 'Separe os documentos', content: 'CPF, documento com foto, CNH (para moto/carro) e conta bancária no seu nome. Para moto, verifique a exigência de EAR e documento do veículo em dia.' },
@@ -113,7 +118,7 @@ export const LOCAL: SeedOpportunity[] = [
     ],
     popularity: 86,
     platforms: [
-      { name: 'Uber', url: 'https://www.uber.com/br/pt-br/drive/', description: 'Maior app de corridas do país', caution: 'Reputação “Não recomendada” no Reclame Aqui: a Uber não responde reclamações por lá (0% de respostas, mai–out/2026). Resolva problemas pelo suporte dentro do app e guarde prints de corridas e repasses.' },
+      { name: 'Uber', url: 'https://www.uber.com/br/pt-br/drive/', description: 'Maior app de corridas do país', caution: 'Reputação “Não recomendada” no Reclame Aqui: a Uber não responde reclamações por lá (0% de respostas, mai–out/2026). Resolva problemas pelo suporte dentro do app e guarde prints de corridas e repasses. Quem tem empréstimo na Uber Conta pode ter parcelas descontadas das corridas.' },
       { name: '99', url: 'https://99app.com', description: 'App brasileiro de corridas', caution: 'Reputação “Regular” no Reclame Aqui (6,6/10, mai–out/2026).' },
     ],
     steps: [
@@ -274,7 +279,7 @@ export const LOCAL: SeedOpportunity[] = [
     taxNote: 'Renda de aluguel deve ser declarada via carnê-leão. Plataformas podem reter tributos conforme a legislação vigente.',
     popularity: 50,
     platforms: [
-      { name: 'Airbnb', url: 'https://www.airbnb.com.br/host/homes', description: 'Maior plataforma de hospedagem (Reclame Aqui: 7,0/10, Boa)' },
+      { name: 'Airbnb', url: 'https://www.airbnb.com.br/host/homes', description: 'Maior plataforma de hospedagem (Reclame Aqui: 7,0/10, Boa); repasse ~24h após o check-in', caution: 'O primeiro repasse de anfitrião novo pode ficar retido por até 30 dias para verificação.' },
     ],
     steps: [
       { title: 'Verifique regras e prepare o espaço', content: 'Condomínio, roupa de cama extra, Wi-Fi, fechadura com senha (opcional) e kit de boas-vindas.' },
@@ -407,8 +412,8 @@ export const LOCAL: SeedOpportunity[] = [
     taxNote: 'Venda eventual de bens pessoais usados geralmente não gera imposto; revenda habitual é atividade comercial (avalie o MEI).',
     popularity: 66,
     platforms: [
-      { name: 'Enjoei', url: 'https://www.enjoei.com.br', description: 'Moda e objetos usados', caution: 'Reputação “Regular” no Reclame Aqui (6,7/10, mai–out/2026); reclamações sobre taxas.' },
-      { name: 'OLX', url: 'https://www.olx.com.br', description: 'Classificados de tudo (Reclame Aqui: 7,5/10, Boa)' },
+      { name: 'Enjoei', url: 'https://www.enjoei.com.br', description: 'Moda e objetos usados', caution: 'Reputação “Regular” no Reclame Aqui (6,7/10, mai–out/2026); reclamações sobre taxas, saques demorados e vendas travadas por extravio.' },
+      { name: 'OLX', url: 'https://www.olx.com.br', description: 'Classificados de tudo (Reclame Aqui: 7,5/10, Boa)', caution: 'O golpe do comprovante falso é comum: só entregue o produto depois de ver o dinheiro na sua conta.' },
       { name: 'Mercado Livre', url: 'https://www.mercadolivre.com.br', description: 'Maior marketplace do Brasil' },
     ],
     steps: [

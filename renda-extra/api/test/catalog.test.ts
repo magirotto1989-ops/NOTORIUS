@@ -6,7 +6,7 @@ import { LOCAL } from '../prisma/data/local.js';
  * Auditoria de plataformas (nov/2026): estas foram reprovadas e não podem voltar
  * ao catálogo sem nova verificação. Motivos em docs/auditoria-plataformas-2026-11.md.
  */
-const REPROVADAS = ['Elo7', 'YouGov', 'Lalamove', 'inDrive', 'Superprof', 'Profes', 'Cambly', 'DataAnnotation', 'Booking.com'];
+const REPROVADAS = ['Elo7', 'YouGov', 'Lalamove', 'inDrive', 'Superprof', 'Profes', 'Cambly', 'DataAnnotation', 'Booking.com', 'Handshake AI'];
 
 const all = [...ONLINE, ...LOCAL];
 
