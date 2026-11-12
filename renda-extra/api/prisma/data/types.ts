@@ -1,7 +1,7 @@
 import type { Category, Currency, Region, WorkMode } from '@prisma/client';
 
 export type SeedStep = { title: string; content: string; premium?: boolean };
-export type SeedPlatform = { name: string; url: string; description?: string };
+export type SeedPlatform = { name: string; url: string; description?: string; caution?: string };
 
 export type SeedOpportunity = {
   slug: string;

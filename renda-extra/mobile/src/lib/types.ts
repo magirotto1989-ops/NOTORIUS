@@ -63,7 +63,7 @@ export type OpportunityDetail = OpportunitySummary & {
   taxNote: string;
   sources: string[];
   reviewedAt: string;
-  platforms: { id: string; name: string; description: string | null; host: string }[];
+  platforms: { id: string; name: string; description: string | null; caution: string | null; host: string }[];
   steps: { id: string; order: number; title: string; locked: boolean }[];
   track: { status: TrackStatus; startedAt: string | null } | null;
 };

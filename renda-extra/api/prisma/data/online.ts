@@ -1,9 +1,9 @@
 import { ANTI_SCAM, TAX, type SeedOpportunity } from './types.js';
 
 const WORKANA = { name: 'Workana', url: 'https://www.workana.com/pt', description: 'Maior marketplace de freelas da América Latina' };
-const FREELAS99 = { name: '99Freelas', url: 'https://www.99freelas.com.br', description: 'Plataforma brasileira com alto volume de projetos' };
-const FIVERR = { name: 'Fiverr', url: 'https://www.fiverr.com', description: 'Venda pacotes de serviço para o mundo todo (USD)' };
-const UPWORK = { name: 'Upwork', url: 'https://www.upwork.com', description: 'Maior plataforma global de freelas (USD)' };
+const FREELAS99 = { name: '99Freelas', url: 'https://www.99freelas.com.br', description: 'Plataforma brasileira com alto volume de projetos', caution: 'Reputação no Reclame Aqui varia entre 6,9 e 7,6 conforme o período (out/2026). Use o pagamento protegido da plataforma.' };
+const FIVERR = { name: 'Fiverr', url: 'https://www.fiverr.com', description: 'Venda pacotes de serviço para o mundo todo (USD) — saque via Payoneer ou PayPal' };
+const UPWORK = { name: 'Upwork', url: 'https://www.upwork.com', description: 'Maior plataforma global de freelas (USD) — saque via Payoneer' };
 const LINKEDIN = { name: 'LinkedIn', url: 'https://www.linkedin.com', description: 'Prospecção direta, sem taxa de plataforma' };
 const INSTAGRAM = { name: 'Instagram', url: 'https://www.instagram.com', description: 'Portfólio e prospecção de clientes locais' };
 const HOTMART = { name: 'Hotmart', url: 'https://hotmart.com/pt-br', description: 'Maior plataforma de produtos digitais do Brasil' };
@@ -295,13 +295,30 @@ export const ONLINE: SeedOpportunity[] = [
     taxNote: TAX.foreign,
     sources: [
       'https://breakingeven.online/blog/outlier-vs-dataannotation-vs-alignerr-pay-comparison',
+      'https://parailabs.com/compare/alignerr-vs-mercor-vs-outlier',
+      'https://bpmoney.com.br/?p=428924',
       'https://clickpetroleoegas.com.br/quer-ganhar-em-dolar-site-convoca-brasileiros-que-querem-atuar-de-casa-ganhando-ate-us-30-por-hora/',
     ],
     popularity: 85,
     platforms: [
-      { name: 'Outlier', url: 'https://outlier.ai', description: 'Projetos de treinamento de IA, inclusive em português' },
-      { name: 'DataAnnotation', url: 'https://www.dataannotation.tech', description: 'Avaliação de respostas de IA (pagamento via PayPal)' },
-      { name: 'Alignerr', url: 'https://www.alignerr.com', description: 'Foco em especialistas por área' },
+      {
+        name: 'Outlier',
+        url: 'https://outlier.ai',
+        description: 'Projetos de treinamento de IA, inclusive em português (Scale AI) — paga via PayPal/Airtm',
+        caution: 'Volume de tarefas oscila e há relatos de testes de qualificação não remunerados.',
+      },
+      {
+        name: 'Handshake AI',
+        url: 'https://joinhandshake.com/ai/',
+        description: 'Projetos para especialistas; recruta falantes de português no Brasil (até US$ 25/h divulgados)',
+        caution: 'Trabalho por projeto, sem renda garantida. Exige graduação e, em geral, inglês intermediário.',
+      },
+      {
+        name: 'Alignerr',
+        url: 'https://www.alignerr.com',
+        description: 'Foco em especialistas por área (Labelbox); vagas abertas no Brasil',
+        caution: 'Pagamento condicionado à aprovação das tarefas e relatos de avaliações não pagas.',
+      },
     ],
     steps: [
       { title: 'Cadastre-se em 2–3 plataformas', content: 'O volume de cada uma oscila, então ter mais de uma reduz semanas paradas. Use o mesmo e-mail e documentos verdadeiros — a verificação de identidade é obrigatória.' },
@@ -341,8 +358,18 @@ export const ONLINE: SeedOpportunity[] = [
     sources: ['https://thefrugal-genz-usa.blogspot.com/2026/05/user-testing-platforms-compared-why.html', 'https://financialbinder.com/get-paid-to-test-websites-apps/'],
     popularity: 58,
     platforms: [
-      { name: 'UserTesting', url: 'https://www.usertesting.com/be-a-user-tester', description: 'A maior e mais constante plataforma de testes' },
-      { name: 'Userlytics', url: 'https://www.userlytics.com', description: 'Testes de 20–40 min, pagamento via PayPal' },
+      {
+        name: 'UserTesting',
+        url: 'https://www.usertesting.com/get-paid-to-test',
+        description: 'A maior e mais constante plataforma de testes',
+        caution: 'O Brasil está entre os mercados de recrutamento, mas a elegibilidade é confirmada só no cadastro.',
+      },
+      {
+        name: 'Userlytics',
+        url: 'https://www.userlytics.com',
+        description: 'Testes de 20–40 min, pagamento via PayPal',
+        caution: 'Sem presença oficial no Brasil: o volume de testes para brasileiros tende a ser baixo.',
+      },
     ],
     steps: [
       { title: 'Prepare equipamento básico', content: 'Microfone razoável (o do fone de ouvido serve), ambiente silencioso e internet estável. Áudio ruim é o principal motivo de reprovação.' },
@@ -356,7 +383,7 @@ export const ONLINE: SeedOpportunity[] = [
     title: 'Professor(a) de idiomas online',
     tagline: 'Dê aulas de inglês ou português para estrangeiros',
     description:
-      'Plataformas conectam você a alunos do mundo todo. Brasileiros também ensinam português para estrangeiros, um nicho com menos concorrência.',
+      'Plataformas conectam você a alunos do mundo todo. Brasileiros também ensinam português para estrangeiros, um nicho com menos concorrência — e onde você é falante nativo.',
     category: 'ENSINO',
     mode: 'ONLINE',
     region: 'GLOBAL',
@@ -365,7 +392,7 @@ export const ONLINE: SeedOpportunity[] = [
     color: '#16A34A',
     hourlyMin: 8,
     hourlyMax: 20,
-    earningsNote: 'O Cambly paga por minuto (cerca de US$ 10/h); no Preply e italki você define o preço — a maioria fica entre US$ 10 e 20/h, descontada a comissão.',
+    earningsNote: 'No Preply e no italki você define o preço — a maioria fica entre US$ 10 e 20/h, descontada a comissão. (O Cambly não está na lista: exige inglês nativo.)',
     startupCostBRL: 0,
     difficulty: 2,
     daysToFirstPay: 14,
@@ -374,16 +401,25 @@ export const ONLINE: SeedOpportunity[] = [
     minEnglish: 3,
     requiredAssets: ['computador'],
     skills: ['idiomas', 'ensino'],
-    pros: ['Ganho em dólar', 'Alunos fixos geram previsibilidade'],
+    pros: ['Ganho em dólar', 'Alunos fixos geram previsibilidade', 'Português para estrangeiros: você já é nativo'],
     cons: ['Primeiras aulas com preço baixo para conseguir avaliações', 'Comissão alta nas primeiras horas (Preply)'],
     warnings: [ANTI_SCAM],
     taxNote: TAX.foreign,
     sources: ['https://www.frugalforless.com/best-paid-online-english-teaching-jobs/', 'https://practiceme.app/pt/vs/cambly-avaliacao'],
     popularity: 66,
     platforms: [
-      { name: 'Preply', url: 'https://preply.com', description: 'Você define o preço da aula' },
-      { name: 'Cambly', url: 'https://www.cambly.com', description: 'Conversação, pagamento por minuto' },
-      { name: 'italki', url: 'https://www.italki.com', description: 'Professores e tutores comunitários' },
+      {
+        name: 'Preply',
+        url: 'https://preply.com',
+        description: 'Você define o preço da aula; comissão de 33% caindo até 18%',
+        caution: 'Para ensinar inglês, os requisitos variam por candidatura. Para ensinar português, você é falante nativo.',
+      },
+      {
+        name: 'italki',
+        url: 'https://www.italki.com',
+        description: 'Professores e tutores comunitários; comissão de 15–21%; saque via Payoneer ou PayPal',
+        caution: 'Tutores comunitários normalmente ensinam a língua nativa: o caminho mais fácil para brasileiros é o português.',
+      },
     ],
     steps: [
       { title: 'Grave um vídeo de apresentação', content: '1–2 minutos, boa luz, sorriso, fale devagar. Diga para quem é sua aula (ex.: "inglês para entrevistas de emprego"). O vídeo é o fator nº 1 de contratação.' },
@@ -419,13 +455,13 @@ export const ONLINE: SeedOpportunity[] = [
     taxNote: TAX.mei,
     popularity: 68,
     platforms: [
-      { name: 'Superprof', url: 'https://www.superprof.com.br', description: 'Anuncie suas aulas gratuitamente' },
-      { name: 'Profes', url: 'https://www.profes.com.br', description: 'Plataforma brasileira de aulas particulares' },
-      { name: 'GetNinjas', url: 'https://www.getninjas.com.br', description: 'Pedidos de alunos da sua região' },
+      { name: 'GetNinjas', url: 'https://www.getninjas.com.br', description: 'Pedidos de alunos da sua região (Reclame Aqui: 8,4/10)' },
+      { name: 'WhatsApp Business', url: 'https://business.whatsapp.com', description: 'Divulgue em grupos de pais e da escola, com catálogo de aulas' },
+      { name: 'Perfil da Empresa no Google', url: 'https://www.google.com/intl/pt-BR/business/', description: 'Apareça para quem busca “aulas de matemática perto de mim”' },
     ],
     steps: [
       { title: 'Defina matéria e público', content: 'Ex.: "Matemática para 6º ao 9º ano" ou "Redação nota 900+ no ENEM". Quanto mais específico, mais fácil o pai/aluno confiar.' },
-      { title: 'Anuncie em 2 plataformas e grupos locais', content: 'Superprof + grupos de pais de escolas do bairro e WhatsApp. Ofereça a primeira aula com desconto.' },
+      { title: 'Anuncie no GetNinjas e em grupos locais', content: 'GetNinjas + Perfil da Empresa no Google + grupos de pais de escolas do bairro no WhatsApp. Ofereça a primeira aula com desconto.' },
       { title: 'Material e plano de aula', content: 'Tenha um diagnóstico na 1ª aula e um plano de 4 semanas. Pais pagam por evolução visível.' },
       { title: 'Pacotes mensais e turmas pequenas', content: 'Venda pacotes de 8 aulas pagos adiantados. Turmas de 3–4 alunos multiplicam o ganho por hora mantendo preço acessível.', premium: true },
     ],
@@ -463,8 +499,8 @@ export const ONLINE: SeedOpportunity[] = [
     ],
     popularity: 90,
     platforms: [
-      { name: 'Shopee Afiliados', url: 'https://affiliate.shopee.com.br', description: 'Comissão por categoria e campanhas' },
-      { name: 'Mercado Livre Afiliados', url: 'https://www.mercadolivre.com.br', description: 'Programa de afiliados e creators' },
+      { name: 'Shopee Afiliados', url: 'https://affiliate.shopee.com.br', description: 'Comissão por categoria e campanhas', caution: 'Reputação “Regular” no Reclame Aqui (6,7/10, mai–out/2026), por reclamações de compradores.' },
+      { name: 'Mercado Livre Afiliados', url: 'https://www.mercadolivre.com.br/l/afiliados-home', description: 'Programa de afiliados e creators — comissão de até 16%' },
       { name: 'Amazon Associados', url: 'https://associados.amazon.com.br', description: 'Programa de afiliados da Amazon Brasil' },
     ],
     steps: [
@@ -538,7 +574,10 @@ export const ONLINE: SeedOpportunity[] = [
     taxNote: TAX.platformPF,
     sources: ['https://ghostshorts.com/pt-br/blog/tiktok-shop-brasil-guia-completo-para-criadores-2026', 'https://viniensina.com.br/tiktok-shop-afiliado/'],
     popularity: 76,
-    platforms: [{ name: 'TikTok Shop', url: 'https://shop.tiktok.com', description: 'Inscrição pelo TikTok Studio' }],
+    platforms: [
+      { name: 'TikTok Studio', url: 'https://www.tiktok.com/tiktokstudio', description: 'Onde o criador pede acesso ao programa de afiliados' },
+      { name: 'TikTok Shop Brasil', url: 'https://seller-br.tiktok.com', description: 'Central oficial do TikTok Shop no Brasil' },
+    ],
     steps: [
       { title: 'Chegue aos primeiros 1.000 seguidores', content: 'Escolha um nicho (beleza, casa, gadgets, pet) e poste 1–2 vídeos por dia. Ganchos fortes nos 2 primeiros segundos.' },
       { title: 'Ative as permissões de comércio', content: 'No TikTok Studio, solicite acesso de afiliado e conclua a verificação de identidade.' },
@@ -646,7 +685,7 @@ export const ONLINE: SeedOpportunity[] = [
     popularity: 40,
     platforms: [
       { name: 'Colab55', url: 'https://www.colab55.com', description: 'Print on demand brasileiro' },
-      { name: 'Redbubble', url: 'https://www.redbubble.com', description: 'Marketplace global de estampas (USD)' },
+      { name: 'Redbubble', url: 'https://www.redbubble.com', description: 'Marketplace global de estampas (USD), saque a partir de US$ 20 via PayPal', caution: 'Não encontramos confirmação oficial de 2026 sobre pagamentos para o Brasil: teste com poucas artes antes de investir tempo.' },
     ],
     steps: [
       { title: 'Escolha 3 nichos', content: 'Profissões (enfermagem, TI), pets por raça, cidades/regionalismos. Nichos apaixonados compram mais.' },
@@ -682,8 +721,8 @@ export const ONLINE: SeedOpportunity[] = [
     taxNote: TAX.foreign,
     popularity: 30,
     platforms: [
-      { name: 'Adobe Stock Contributor', url: 'https://contributor.stock.adobe.com', description: 'Venda pela Adobe' },
-      { name: 'Shutterstock Contributor', url: 'https://submit.shutterstock.com', description: 'Um dos maiores bancos de imagens' },
+      { name: 'Adobe Stock Contributor', url: 'https://contributor.stock.adobe.com', description: 'Venda pela Adobe; saque a partir de US$ 25 via PayPal ou Payoneer' },
+      { name: 'Shutterstock Contributor', url: 'https://submit.shutterstock.com', description: 'Um dos maiores bancos de imagens; pagamento mensal via PayPal, Payoneer ou Skrill (mín. US$ 25)' },
     ],
     steps: [
       { title: 'Estude o que vende', content: 'Pessoas reais em situações do dia a dia, diversidade, trabalho remoto e Brasil autêntico (cidades, comidas, festas) têm pouca oferta.' },
@@ -757,9 +796,9 @@ export const ONLINE: SeedOpportunity[] = [
     taxNote: TAX.platformPF,
     popularity: 45,
     platforms: [
-      { name: 'Toluna', url: 'https://br.toluna.com', description: 'Painel de pesquisas com prêmios' },
-      { name: 'Ipsos iSay', url: 'https://www.ipsosisay.com/pt-br', description: 'Instituto Ipsos' },
-      { name: 'YouGov', url: 'https://br.yougov.com', description: 'Pesquisas de opinião' },
+      { name: 'Toluna', url: 'https://br.toluna.com', description: 'Painel de pesquisas; resgate em vale-presente ou PayPal' },
+      { name: 'Ipsos iSay', url: 'https://www.ipsosisay.com/pt-br', description: 'Instituto Ipsos; prêmios em vale-presente ou PayPal' },
+      { name: 'PiniOn', url: 'https://pinion.app', description: 'App brasileiro de pesquisas e missões (Reclame Aqui: Boa)' },
     ],
     steps: [
       { title: 'Cadastre-se com um e-mail exclusivo', content: 'Evita misturar com seu e-mail pessoal. Complete o perfil demográfico — isso aumenta os convites.' },

@@ -333,7 +333,7 @@ async function route(req: Req, d: DB): Promise<unknown> {
         taxNote: o.taxNote,
         sources: o.sources,
         reviewedAt: o.reviewedAt,
-        platforms: o.platforms.map((pl) => ({ id: pl.id, name: pl.name, description: pl.description, host: host(pl.url) })),
+        platforms: o.platforms.map((pl) => ({ id: pl.id, name: pl.name, description: pl.description, caution: pl.caution ?? null, host: host(pl.url) })),
         steps: o.steps.map((s) => ({ id: s.id, order: s.order, title: s.title, locked: s.premium && !premium })),
         track: t ? { status: t.status, startedAt: t.startedAt } : null,
       };

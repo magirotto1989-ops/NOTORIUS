@@ -102,7 +102,7 @@ export async function trackRoutes(app: FastifyInstance) {
       color: o.color,
       track: track ? { status: track.status, startedAt: track.startedAt } : null,
       progress: { completed, total: o.steps.length, pct: o.steps.length ? Math.round((completed / o.steps.length) * 100) : 0 },
-      platforms: o.platforms.map((p) => ({ id: p.id, name: p.name })),
+      platforms: o.platforms.map((p) => ({ id: p.id, name: p.name, caution: p.caution })),
       steps: o.steps.map((s) => {
         const locked = s.premium && !premium;
         return {

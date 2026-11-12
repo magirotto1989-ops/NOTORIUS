@@ -158,6 +158,8 @@ model Platform {
   url           String
   affiliateUrl  String? // se preenchido, o clique usa este link (comissão de indicação)
   description   String?
+  /// Alerta exibido ao usuário quando a plataforma passou na auditoria com ressalvas
+  caution       String?
   order         Int              @default(0)
   opportunity   Opportunity      @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
   clicks        AffiliateClick[]

@@ -51,7 +51,7 @@ export function serializeSummary(o: Opportunity, ctx: { usdBrl: number; match: M
 }
 
 export function serializePlatform(p: Platform) {
-  return { id: p.id, name: p.name, description: p.description, host: safeHost(p.url) };
+  return { id: p.id, name: p.name, description: p.description, caution: p.caution, host: safeHost(p.url) };
 }
 
 function safeHost(url: string) {

@@ -32,7 +32,7 @@ async function seedOpportunities() {
 
     for (const [i, p] of platforms.entries()) {
       const existing = await prisma.platform.findFirst({ where: { opportunityId: opp.id, name: p.name } });
-      if (existing) await prisma.platform.update({ where: { id: existing.id }, data: { url: p.url, description: p.description, order: i } });
+      if (existing) await prisma.platform.update({ where: { id: existing.id }, data: { url: p.url, description: p.description, caution: p.caution ?? null, order: i } });
       else await prisma.platform.create({ data: { ...p, order: i, opportunityId: opp.id } });
     }
     await prisma.platform.deleteMany({ where: { opportunityId: opp.id, name: { notIn: platforms.map((p) => p.name) } } });

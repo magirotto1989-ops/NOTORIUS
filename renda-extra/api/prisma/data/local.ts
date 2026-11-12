@@ -36,7 +36,7 @@ export const LOCAL: SeedOpportunity[] = [
     title: 'Entregador(a) por aplicativo',
     tagline: 'Entregas de comida e encomendas de moto, bike ou carro',
     description:
-      'Faça entregas pelo iFood, 99Food ou Lalamove nos horários que escolher. É uma das formas mais rápidas de começar a ganhar — o repasse costuma ser semanal.',
+      'Faça entregas pelo iFood ou pela 99Food nos horários que escolher. É uma das formas mais rápidas de começar a ganhar — o repasse costuma ser semanal.',
     category: 'ENTREGAS_MOBILIDADE',
     mode: 'PRESENCIAL',
     region: 'BR',
@@ -56,14 +56,17 @@ export const LOCAL: SeedOpportunity[] = [
     skills: [],
     pros: ['Começa em poucos dias', 'Repasse semanal', 'Você escolhe os horários'],
     cons: ['Custos com veículo e risco no trânsito', 'Ganho cai fora dos horários de pico'],
-    warnings: ['Use equipamentos de segurança e tenha seguro.', 'Controle quilometragem e gastos — o app ajuda a ver o ganho líquido real.'],
+    warnings: [
+      'Use equipamentos de segurança e tenha seguro.',
+      'Controle quilometragem e gastos — o app ajuda a ver o ganho líquido real.',
+      'A Lalamove não está listada: reputação “Não recomendada” no Reclame Aqui (responde só ~33% das reclamações, mai–out/2026).',
+    ],
     taxNote: TAX.app,
     sources: ['https://static.poder360.com.br/uploads/2026/08/Resposta-iFood-Guilherme-Boulos.pdf', 'https://canaltech.com.br/mercado/quanto-ganha-um-entregador-do-ifood-em-2025/'],
     popularity: 92,
     platforms: [
-      { name: 'iFood Entregadores', url: 'https://entregador.ifood.com.br', description: 'Maior app de delivery do Brasil' },
-      { name: '99Food', url: 'https://99app.com', description: 'Delivery da 99' },
-      { name: 'Lalamove', url: 'https://www.lalamove.com', description: 'Entregas de encomendas e fretes' },
+      { name: 'iFood Entregadores', url: 'https://entregador.ifood.com.br', description: 'Maior app de delivery do Brasil', caution: 'Reputação “Regular” no Reclame Aqui (6,9/10, mai–out/2026); há relatos de bloqueios de conta de entregadores.' },
+      { name: '99Food', url: 'https://99app.com/food/', description: 'Delivery da 99, em expansão em 2026 (Reclame Aqui: 7,9/10, Boa)' },
     ],
     steps: [
       { title: 'Separe os documentos', content: 'CPF, documento com foto, CNH (para moto/carro) e conta bancária no seu nome. Para moto, verifique a exigência de EAR e documento do veículo em dia.' },
@@ -76,7 +79,7 @@ export const LOCAL: SeedOpportunity[] = [
   {
     slug: 'motorista-app',
     title: 'Motorista de aplicativo',
-    tagline: 'Corridas pela Uber, 99 ou inDrive',
+    tagline: 'Corridas por aplicativo no seu horário',
     description:
       'Com carro próprio e CNH com EAR, você faz corridas nos horários que quiser. Atenção ao custo do carro: o que define o resultado é o ganho líquido por hora, não o faturamento.',
     category: 'ENTREGAS_MOBILIDADE',
@@ -98,7 +101,11 @@ export const LOCAL: SeedOpportunity[] = [
     skills: [],
     pros: ['Começa rápido', 'Horário flexível', 'Repasses frequentes'],
     cons: ['Desgaste e depreciação do carro', 'Combustível pesa muito no resultado', 'Segurança'],
-    warnings: ['Carro alugado para rodar costuma deixar pouco lucro — faça as contas antes.', 'Tenha seguro que cubra uso em aplicativo.'],
+    warnings: [
+      'Carro alugado para rodar costuma deixar pouco lucro — faça as contas antes.',
+      'Tenha seguro que cubra uso em aplicativo.',
+      'Uber e inDrive não estão listadas: reputação “Não recomendada” e “Ruim” no Reclame Aqui (mai–out/2026). A decisão de usá-las é sua.',
+    ],
     taxNote: TAX.app,
     sources: [
       'https://canaltech.com.br/carros/quanto-ganha-um-motorista-de-uber-em-sao-paulo-e-outras-capitais',
@@ -106,13 +113,11 @@ export const LOCAL: SeedOpportunity[] = [
     ],
     popularity: 86,
     platforms: [
-      { name: 'Uber', url: 'https://www.uber.com/br/pt-br/drive/', description: 'Maior app de corridas' },
-      { name: '99', url: 'https://99app.com', description: 'App brasileiro de corridas' },
-      { name: 'inDrive', url: 'https://indrive.com', description: 'Você negocia o valor da corrida' },
+      { name: '99', url: 'https://99app.com', description: 'App brasileiro de corridas', caution: 'Reputação “Regular” no Reclame Aqui (6,6/10, mai–out/2026).' },
     ],
     steps: [
       { title: 'Verifique os requisitos', content: 'CNH com observação "exerce atividade remunerada" (EAR), carro dentro do ano mínimo exigido na sua cidade e documentação em dia.' },
-      { title: 'Cadastre-se em mais de um app', content: 'Alternar entre Uber, 99 e inDrive reduz tempo ocioso. Ative apenas um por vez durante a corrida.' },
+      { title: 'Faça o cadastro e conheça as regras', content: 'Comece pela 99. Leia as regras de avaliação e cancelamento: bloqueios por nota baixa são a reclamação mais comum de motoristas.' },
       { title: 'Conheça os horários de alta demanda', content: 'Manhã cedo (6h–9h), fim da tarde (17h–20h) e madrugadas de sexta e sábado têm tarifa dinâmica com mais frequência.' },
       { title: 'Regra do R$/km', content: 'Calcule seu custo por km (combustível + manutenção + depreciação). Só aceite corridas que paguem pelo menos 2× esse valor, contando o deslocamento até o passageiro.', premium: true },
       { title: 'Registre tudo no app de ganhos', content: 'Lance o repasse diário e acompanhe a evolução. Se o líquido/h ficar abaixo do que outras opções do seu perfil oferecem, o app vai mostrar.', premium: true },
@@ -201,7 +206,11 @@ export const LOCAL: SeedOpportunity[] = [
     cons: ['Responsabilidade com o animal', 'Depende do clima'],
     taxNote: TAX.mei,
     popularity: 54,
-    platforms: [{ name: 'DogHero', url: 'https://www.doghero.com.br', description: 'Plataforma de hospedagem e passeios de pets' }, GOOGLE_PERFIL, INSTAGRAM],
+    platforms: [
+      { name: 'DogHero (Petlove)', url: 'https://www.doghero.com.br', description: 'Hospedagem e passeios de pets (Reclame Aqui: 7,3/10, Boa)', caution: 'Os agendamentos migraram para o app da Petlove: confirme por lá como se cadastrar como cuidador.' },
+      GOOGLE_PERFIL,
+      INSTAGRAM,
+    ],
     steps: localServiceSteps('serviço de pet sitter', 'Pacotes de 12–20 passeios/mês com desconto fidelizam tutores.'),
   },
   {
@@ -236,7 +245,7 @@ export const LOCAL: SeedOpportunity[] = [
   {
     slug: 'hospedagem-temporada',
     title: 'Hospedagem por temporada',
-    tagline: 'Alugue um quarto ou imóvel no Airbnb e Booking',
+    tagline: 'Alugue um quarto ou imóvel no Airbnb',
     description:
       'Um quarto livre ou um imóvel parado pode virar renda. O trabalho é de anfitrião: anúncio, mensagens, limpeza e check-in.',
     category: 'ALUGUEL_ATIVOS',
@@ -257,12 +266,14 @@ export const LOCAL: SeedOpportunity[] = [
     skills: ['atendimento', 'organizacao'],
     pros: ['Usa um bem que já existe', 'Alto ganho por hora de trabalho'],
     cons: ['Desgaste do imóvel', 'Regras de condomínio podem proibir'],
-    warnings: ['Verifique a convenção do condomínio e leis municipais antes de anunciar.'],
+    warnings: [
+      'Verifique a convenção do condomínio e leis municipais antes de anunciar.',
+      'O Booking.com não está listado: aparece como “Não recomendada” no Reclame Aqui (2026).',
+    ],
     taxNote: 'Renda de aluguel deve ser declarada via carnê-leão. Plataformas podem reter tributos conforme a legislação vigente.',
     popularity: 50,
     platforms: [
-      { name: 'Airbnb', url: 'https://www.airbnb.com.br/host/homes', description: 'Maior plataforma de hospedagem' },
-      { name: 'Booking.com', url: 'https://join.booking.com', description: 'Forte com viajantes a trabalho e estrangeiros' },
+      { name: 'Airbnb', url: 'https://www.airbnb.com.br/host/homes', description: 'Maior plataforma de hospedagem (Reclame Aqui: 7,0/10, Boa)' },
     ],
     steps: [
       { title: 'Verifique regras e prepare o espaço', content: 'Condomínio, roupa de cama extra, Wi-Fi, fechadura com senha (opcional) e kit de boas-vindas.' },
@@ -395,8 +406,8 @@ export const LOCAL: SeedOpportunity[] = [
     taxNote: 'Venda eventual de bens pessoais usados geralmente não gera imposto; revenda habitual é atividade comercial (avalie o MEI).',
     popularity: 66,
     platforms: [
-      { name: 'Enjoei', url: 'https://www.enjoei.com.br', description: 'Moda e objetos usados' },
-      { name: 'OLX', url: 'https://www.olx.com.br', description: 'Classificados de tudo' },
+      { name: 'Enjoei', url: 'https://www.enjoei.com.br', description: 'Moda e objetos usados', caution: 'Reputação “Regular” no Reclame Aqui (6,7/10, mai–out/2026); reclamações sobre taxas.' },
+      { name: 'OLX', url: 'https://www.olx.com.br', description: 'Classificados de tudo (Reclame Aqui: 7,5/10, Boa)' },
       { name: 'Mercado Livre', url: 'https://www.mercadolivre.com.br', description: 'Maior marketplace do Brasil' },
     ],
     steps: [
@@ -434,9 +445,9 @@ export const LOCAL: SeedOpportunity[] = [
     taxNote: TAX.mei,
     popularity: 62,
     platforms: [
-      { name: 'Shopee Vendedor', url: 'https://seller.shopee.com.br', description: 'Central do vendedor Shopee' },
-      { name: 'Mercado Livre', url: 'https://www.mercadolivre.com.br', description: 'Venda no maior marketplace do país' },
-      { name: 'Elo7', url: 'https://www.elo7.com.br', description: 'Para produtos criativos e artesanais' },
+      { name: 'Mercado Livre', url: 'https://www.mercadolivre.com.br', description: 'Venda no maior marketplace do país (Reclame Aqui: 7,6/10, Boa)' },
+      { name: 'Shopee Vendedor', url: 'https://seller.shopee.com.br', description: 'Central do vendedor Shopee', caution: 'Reputação “Regular” no Reclame Aqui (6,7/10, mai–out/2026).' },
+      { name: 'Amazon (venda)', url: 'https://venda.amazon.com.br', description: 'Venda na Amazon Brasil (Reclame Aqui: Ótima)' },
     ],
     steps: [
       { title: 'Escolha um nicho com margem', content: 'Produtos leves, pequenos e sem variação de tamanho (frete barato, poucas devoluções).' },
@@ -448,7 +459,7 @@ export const LOCAL: SeedOpportunity[] = [
   {
     slug: 'artesanato',
     title: 'Artesanato e produtos feitos à mão',
-    tagline: 'Venda criações no Elo7, Instagram e feiras',
+    tagline: 'Venda criações no Mercado Livre, Shopee, Instagram e feiras',
     description:
       'Crochê, velas, sabonetes, papelaria personalizada, bijuterias, lembrancinhas de festa. Personalização é o que permite preço melhor.',
     category: 'ECOMMERCE',
@@ -470,7 +481,12 @@ export const LOCAL: SeedOpportunity[] = [
     cons: ['Precificação difícil (tempo de produção)', 'Escala limitada'],
     taxNote: TAX.mei,
     popularity: 48,
-    platforms: [{ name: 'Elo7', url: 'https://www.elo7.com.br', description: 'Marketplace de produtos criativos' }, INSTAGRAM, WHATSAPP_BUSINESS],
+    platforms: [
+      { name: 'Mercado Livre', url: 'https://www.mercadolivre.com.br', description: 'Maior marketplace do país, com categoria de artesanato' },
+      { name: 'Shopee Vendedor', url: 'https://seller.shopee.com.br', description: 'Muito usado para personalizados e lembrancinhas', caution: 'Reputação “Regular” no Reclame Aqui (6,7/10, mai–out/2026).' },
+      INSTAGRAM,
+      WHATSAPP_BUSINESS,
+    ],
     steps: [
       { title: 'Defina sua linha de produtos', content: 'Comece com 3–5 produtos com identidade visual coerente.' },
       { title: 'Calcule preço pelo tempo', content: 'Material + (horas × valor da sua hora) + embalagem + taxa da plataforma.' },

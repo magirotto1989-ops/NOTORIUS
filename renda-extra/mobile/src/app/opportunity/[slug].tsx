@@ -135,6 +135,12 @@ export default function OpportunityScreen() {
         </Section>
 
         <Section title="Onde começar">
+          <View style={styles.verified}>
+            <Icon name="shield-checkmark" size={16} color={colors.brand} />
+            <T v="caption" color={colors.brandDark} style={{ flex: 1 }}>
+              Plataformas verificadas em {new Date(o.reviewedAt).toLocaleDateString('pt-BR')}: funcionamento, aceitação de brasileiros e reputação no Reclame Aqui.
+            </T>
+          </View>
           {o.platforms.map((p) => (
             <View key={p.id} style={styles.platform}>
               <View style={{ flex: 1 }}>
@@ -142,6 +148,14 @@ export default function OpportunityScreen() {
                 <T v="caption" color={colors.textMuted}>
                   {p.description ?? p.host}
                 </T>
+                {p.caution && (
+                  <View style={styles.caution}>
+                    <Icon name="warning" size={13} color={colors.warning} style={{ marginTop: 1 }} />
+                    <T v="caption" color={colors.warning} style={{ flex: 1 }}>
+                      {p.caution}
+                    </T>
+                  </View>
+                )}
               </View>
               <Button title="Acessar" size="sm" variant="secondary" iconRight="open-outline" loading={opening === p.id} onPress={() => openPlatform(p.id)} />
             </View>
@@ -291,6 +305,8 @@ const styles = StyleSheet.create({
   metric: { flexGrow: 1, flexBasis: '45%', minWidth: 140, gap: 4, padding: space(4), borderRadius: radius.lg, backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border },
   platform: { flexDirection: 'row', alignItems: 'center', gap: space(3), paddingVertical: space(2), borderBottomWidth: 1, borderColor: colors.border },
   stepRow: { flexDirection: 'row', alignItems: 'center', gap: space(3) },
+  caution: { flexDirection: 'row', gap: 6, marginTop: 6, padding: 8, borderRadius: radius.sm, backgroundColor: colors.warningSoft },
+  verified: { flexDirection: 'row', alignItems: 'center', gap: 8, padding: 10, borderRadius: radius.md, backgroundColor: colors.brandTint },
   stepNum: { width: 28, height: 28, borderRadius: 14, backgroundColor: colors.brandTint, alignItems: 'center', justifyContent: 'center' },
   footer: { flexDirection: 'row', padding: space(4), paddingHorizontal: space(5), borderTopWidth: 1, borderColor: colors.border, backgroundColor: colors.card, width: '100%' },
 });
