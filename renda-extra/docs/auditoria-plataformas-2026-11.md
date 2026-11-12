@@ -140,3 +140,11 @@ Nenhuma plataforma do catálogo apresentou **padrão** de calote. Os riscos enco
 ### O que continua dependendo de teste real
 
 Para **UserTesting, Userlytics, Alignerr e Redbubble**, a confirmação definitiva só vem fazendo o cadastro com dados brasileiros. Sugestão: um testador de confiança se cadastra e registra o resultado. Se a plataforma recusar o Brasil, ela deve ser removida.
+
+---
+
+## Inclusão: Canal no YouTube sem aparecer (12/11/2026)
+
+| Plataforma | Resultado | Evidência |
+| --- | --- | --- |
+| YouTube (Programa de Parcerias) + Google AdSense | ✅ Disponível no Brasil; o pagamento via AdSense é confiável. ⚠️ Riscos explícitos no app: política de "conteúdo inautêntico" (jul/2025), requisitos dobrando em 1º/fev/2027, Shorts com baixa remuneração e meses até o primeiro pagamento | [Políticas oficiais](https://support.google.com/youtube/answer/1311392), [AIR Media-Tech](https://air.io/pt/monetization/youtube-partner-program-requirements-2026-the-complete-guide), [Meio & Mensagem](https://www.meioemensagem.com.br/midia/youtube-altera-regras-para-monetizacao-de-criadores) |

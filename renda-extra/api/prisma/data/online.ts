@@ -626,6 +626,96 @@ export const ONLINE: SeedOpportunity[] = [
     ],
   },
   {
+    slug: 'canal-youtube-sem-aparecer',
+    title: 'Canal no YouTube sem aparecer (canal dark)',
+    tagline: 'Vídeos com narração, roteiro e edição — sem mostrar o rosto',
+    description:
+      'Canais em que o criador não aparece: curiosidades, história, finanças explicadas, tutoriais, resumos. O YouTube paga pelos anúncios via Google AdSense depois que o canal entra no Programa de Parcerias. É uma renda de longo prazo: exige meses de constância antes do primeiro pagamento, e o YouTube corta a monetização de vídeos produzidos em massa sem esforço humano.',
+    category: 'CONTEUDO',
+    mode: 'ONLINE',
+    region: 'GLOBAL',
+    currency: 'BRL',
+    icon: 'logo-youtube',
+    color: '#FF0000',
+    hourlyMin: 0,
+    hourlyMax: 40,
+    earningsNote:
+      'A maioria dos canais leva meses para monetizar e muitos nunca chegam lá. Shorts pagam de 3% a 14% do que pagam vídeos longos; a mediana global dos vídeos longos fica perto de US$ 3,82 por mil visualizações monetizadas (varia muito por nicho e país).',
+    startupCostBRL: 0,
+    difficulty: 4,
+    daysToFirstPay: 180,
+    minHoursWeek: 8,
+    flexibility: 5,
+    requiredAssets: ['computador'],
+    skills: ['video', 'escrita'],
+    pros: ['Não precisa aparecer', 'Vídeos continuam rendendo por anos', 'Pagamento confiável via Google AdSense'],
+    cons: [
+      'Meses de trabalho antes do primeiro pagamento',
+      'Exigência de audiência vai dobrar em fev/2027',
+      'Shorts pagam muito pouco',
+      'Uma revisão do YouTube pode desmonetizar o canal inteiro',
+    ],
+    warnings: [
+      'Desde jul/2025 o YouTube não monetiza “conteúdo inautêntico”: vídeos produzidos em massa, repetitivos ou totalmente automáticos. Usar IA como ferramenta é permitido; o vídeo inteiro automático, não.',
+      'Requisitos para monetizar: 1.000 inscritos + 4.000 horas assistidas em 12 meses, ou 10 milhões de visualizações em Shorts em 90 dias. A partir de 1º/fev/2027: 8.000 horas ou 20 milhões de visualizações em Shorts.',
+      'Cuidado com cursos de “canal dark automático que fatura sozinho”: os números divulgados costumam vir de quem vende o curso.',
+      ANTI_SCAM,
+    ],
+    taxNote: TAX.foreign,
+    sources: [
+      'https://air.io/pt/monetization/youtube-partner-program-requirements-2026-the-complete-guide',
+      'https://www.meioemensagem.com.br/midia/youtube-altera-regras-para-monetizacao-de-criadores',
+      'https://metricool.com/faceless-youtube-channel/',
+      'https://tecnois.com.br/canais-dark-youtube-o-que-sao-2026/',
+      'https://support.google.com/youtube/answer/1311392',
+    ],
+    popularity: 72,
+    platforms: [
+      { name: 'YouTube Studio', url: 'https://studio.youtube.com', description: 'Onde você publica, acompanha métricas e pede a monetização' },
+      { name: 'Google AdSense', url: 'https://adsense.google.com/start/', description: 'Conta pela qual o YouTube paga; o pagamento cai na sua conta bancária' },
+      {
+        name: 'Políticas de monetização do YouTube',
+        url: 'https://support.google.com/youtube/answer/1311392',
+        description: 'Regras oficiais: leia antes de escolher o formato do canal',
+      },
+    ],
+    steps: [
+      {
+        title: 'Escolha um nicho que você consegue alimentar toda semana',
+        content:
+          'Bons nichos têm busca constante e permitem pesquisa própria: finanças explicadas, história, ciência, tutoriais de software, curiosidades verificadas. Evite os formatos que o YouTube mais desmonetiza: compilações, histórias genéricas narradas por IA e reaproveitamento de vídeos de terceiros.',
+      },
+      {
+        title: 'Produza com esforço humano visível',
+        content:
+          'Roteiro escrito por você, pesquisa com fontes, edição própria. A IA pode ajudar na voz, na tradução ou em imagens, mas o vídeo precisa ter contribuição original. Se usar cenas realistas geradas por IA, marque a opção de conteúdo alterado ou sintético no YouTube Studio.',
+      },
+      {
+        title: 'Publique com constância e acompanhe a meta',
+        content:
+          'Uma meta realista: 1–2 vídeos longos por semana, mais Shorts como vitrine para atrair inscritos. Acompanhe no YouTube Studio o caminho até 1.000 inscritos e 4.000 horas (8.000 horas a partir de fevereiro de 2027). Shorts ajudam a crescer, mas não contam horas assistidas.',
+      },
+      {
+        title: 'Vídeo que segura a audiência',
+        content:
+          'Gancho nos primeiros 30 segundos (a pergunta ou o resultado que o vídeo entrega), promessa clara, capítulos e um ritmo de corte a cada 5–10 segundos. Use o recurso “Testar e comparar” do YouTube Studio para testar até 3 miniaturas e títulos por vídeo.',
+        premium: true,
+      },
+      {
+        title: 'Não dependa só do AdSense',
+        content:
+          'Como uma revisão pode desmonetizar o canal, diversifique: links de afiliado na descrição (veja a trilha de afiliados), patrocínios de marcas do nicho e um produto digital próprio. Canais com renda diversificada sobrevivem a mudanças de política.',
+        premium: true,
+      },
+      {
+        title: 'Checklist contra desmonetização',
+        content:
+          'Antes de publicar: roteiro é original? Há fontes? A música e as imagens têm licença? O formato varia em relação aos vídeos anteriores? O conteúdo sintético realista foi sinalizado? Se o canal for desmonetizado, corrija o padrão em todos os vídeos antes de recorrer: o YouTube reavalia o canal inteiro, e só dá para pedir nova análise depois de 90 dias.',
+        premium: true,
+      },
+    ],
+  },
+  {
     slug: 'infoproduto-proprio',
     title: 'Crie seu produto digital',
     tagline: 'E-book, curso ou template sobre o que você sabe',
