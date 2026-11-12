@@ -79,7 +79,7 @@ export const LOCAL: SeedOpportunity[] = [
   {
     slug: 'motorista-app',
     title: 'Motorista de aplicativo',
-    tagline: 'Corridas por aplicativo no seu horário',
+    tagline: 'Corridas pela Uber ou 99 no seu horário',
     description:
       'Com carro próprio e CNH com EAR, você faz corridas nos horários que quiser. Atenção ao custo do carro: o que define o resultado é o ganho líquido por hora, não o faturamento.',
     category: 'ENTREGAS_MOBILIDADE',
@@ -104,7 +104,7 @@ export const LOCAL: SeedOpportunity[] = [
     warnings: [
       'Carro alugado para rodar costuma deixar pouco lucro — faça as contas antes.',
       'Tenha seguro que cubra uso em aplicativo.',
-      'Uber e inDrive não estão listadas: reputação “Não recomendada” e “Ruim” no Reclame Aqui (mai–out/2026). A decisão de usá-las é sua.',
+      'O inDrive não está listado: reputação “Ruim” no Reclame Aqui (5,4/10, mai–out/2026).',
     ],
     taxNote: TAX.app,
     sources: [
@@ -113,11 +113,12 @@ export const LOCAL: SeedOpportunity[] = [
     ],
     popularity: 86,
     platforms: [
+      { name: 'Uber', url: 'https://www.uber.com/br/pt-br/drive/', description: 'Maior app de corridas do país', caution: 'Reputação “Não recomendada” no Reclame Aqui: a Uber não responde reclamações por lá (0% de respostas, mai–out/2026). Resolva problemas pelo suporte dentro do app e guarde prints de corridas e repasses.' },
       { name: '99', url: 'https://99app.com', description: 'App brasileiro de corridas', caution: 'Reputação “Regular” no Reclame Aqui (6,6/10, mai–out/2026).' },
     ],
     steps: [
       { title: 'Verifique os requisitos', content: 'CNH com observação "exerce atividade remunerada" (EAR), carro dentro do ano mínimo exigido na sua cidade e documentação em dia.' },
-      { title: 'Faça o cadastro e conheça as regras', content: 'Comece pela 99. Leia as regras de avaliação e cancelamento: bloqueios por nota baixa são a reclamação mais comum de motoristas.' },
+      { title: 'Cadastre-se em mais de um app', content: 'Rodar na Uber e na 99 reduz o tempo parado; ative apenas um por vez durante a corrida. Leia as regras de avaliação e cancelamento de cada app: bloqueios por nota baixa são a reclamação mais comum de motoristas.' },
       { title: 'Conheça os horários de alta demanda', content: 'Manhã cedo (6h–9h), fim da tarde (17h–20h) e madrugadas de sexta e sábado têm tarifa dinâmica com mais frequência.' },
       { title: 'Regra do R$/km', content: 'Calcule seu custo por km (combustível + manutenção + depreciação). Só aceite corridas que paguem pelo menos 2× esse valor, contando o deslocamento até o passageiro.', premium: true },
       { title: 'Registre tudo no app de ganhos', content: 'Lance o repasse diário e acompanhe a evolução. Se o líquido/h ficar abaixo do que outras opções do seu perfil oferecem, o app vai mostrar.', premium: true },
