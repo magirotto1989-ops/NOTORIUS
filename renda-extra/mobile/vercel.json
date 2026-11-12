@@ -1,0 +1,5 @@
+{
+  "buildCommand": "EXPO_PUBLIC_DEMO=1 npx expo export -p web",
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

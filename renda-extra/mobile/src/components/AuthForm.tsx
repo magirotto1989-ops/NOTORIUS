@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, Platform, Pressable, View, type TextInputInstance
 import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '@/lib/auth';
-import { ApiError } from '@/lib/api';
+import { ApiError, DEMO } from '@/lib/api';
 import { Button, ErrorBox, Icon, Input, T } from './ui';
 import { colors, font, space } from '@/theme';
 
@@ -88,6 +88,19 @@ export function AuthForm({ mode }: { mode: 'login' | 'register' }) {
                 <Icon name={showPw ? 'eye-off-outline' : 'eye-outline'} color={colors.textSoft} />
               </Pressable>
             </View>
+            {DEMO && !isRegister && (
+              <Pressable
+                onPress={() => {
+                  setEmail('demo@rendamais.app');
+                  setPassword('demo12345');
+                }}
+                style={{ padding: 12, borderRadius: 12, backgroundColor: colors.brandTint }}
+              >
+                <T v="small" color={colors.brandDark}>
+                  Versão de teste: toque aqui para usar a conta demo (com trilhas e ganhos de exemplo).
+                </T>
+              </Pressable>
+            )}
             {error && <ErrorBox message={error} />}
             <Button title={isRegister ? 'Criar conta grátis' : 'Entrar'} onPress={submit} loading={loading} />
           </View>

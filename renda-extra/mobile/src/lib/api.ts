@@ -1,6 +1,7 @@
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { storage } from './storage';
+import { demoApi, DemoError } from './demo/server';
 
 /** Em dev, sem EXPO_PUBLIC_API_URL, usa o IP da máquina que roda o Metro — funciona no celular físico. */
 function resolveBaseUrl() {
@@ -68,7 +69,26 @@ async function refresh(): Promise<boolean> {
 
 type Options = { method?: string; body?: unknown; auth?: boolean };
 
+/** Modo demonstração: sem servidor, dados salvos no próprio aparelho (link público de testes). */
+export const DEMO = process.env.EXPO_PUBLIC_DEMO === '1';
+
+async function viaDemo<T>(path: string, opts: Options): Promise<T> {
+  try {
+    return (await demoApi(path, opts, accessToken)) as T;
+  } catch (e) {
+    if (e instanceof DemoError) {
+      if (e.status === 401 && !path.startsWith('/auth/')) {
+        await session.clear();
+        onSessionExpired?.();
+      }
+      throw new ApiError(e.status, e.code, e.message);
+    }
+    throw e;
+  }
+}
+
 export async function api<T = unknown>(path: string, opts: Options = {}, retried = false): Promise<T> {
+  if (DEMO) return viaDemo<T>(path, opts);
   const headers: Record<string, string> = {};
   if (opts.body !== undefined) headers['content-type'] = 'application/json';
   if (accessToken) headers.authorization = `Bearer ${accessToken}`;
@@ -99,6 +119,7 @@ export async function api<T = unknown>(path: string, opts: Options = {}, retried
 
 /** Para downloads (CSV): devolve o corpo como texto. */
 export async function apiText(path: string): Promise<string> {
+  if (DEMO) return viaDemo<string>(path, {});
   const res = await fetch(`${API_URL}${path}`, { headers: accessToken ? { authorization: `Bearer ${accessToken}` } : {} });
   if (res.status === 401 && (await refresh())) return apiText(path);
   if (!res.ok) {
